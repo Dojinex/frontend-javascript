@@ -56,4 +56,3 @@ class StudentClass implements StudentsInterface {
         return this.firstName
     }
 };
-
