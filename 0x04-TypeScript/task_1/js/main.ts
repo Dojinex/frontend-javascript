@@ -1,24 +1,21 @@
-// Teacher interface
-export interface Teacher {
-  firstName: string;
-  lastName: string;
-  location: string;
-  fullTimeEmployee: boolean;
-  yearsOfExperience?: number; // optional
-}
+// task_1/js/main.ts
 
-// Directors interface extending Teacher
-export interface Directors extends Teacher {
-  numberOfReports: number;
+export interface Teacher {
+  readonly firstName: string;
+  readonly lastName: string;
+  fullTimeEmployee: boolean;
+  yearsOfExperience?: number;
+  location: string;
+  [key: string]: any; // allow any additional attributes
 }
 
 // Example usage
-const director1: Directors = {
+const teacher3: Teacher = {
   firstName: 'John',
   lastName: 'Doe',
   location: 'London',
-  fullTimeEmployee: true,
-  numberOfReports: 17,
+  fullTimeEmployee: false,
+  contract: false, // extra attribute
 };
 
-console.log(director1);
+console.log(teacher3);
