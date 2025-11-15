@@ -1,44 +1,56 @@
-interface MajorCredits {
-  credits: number;
-  readonly brand: "major";
+// DirectorInterface
+interface DirectorInterface {
+    workFromHome(): string;
+    getCoffeeBreak(): string;
+    workDirectorTasks(): string;
 }
 
-interface MinorCredits {
-  credits: number;
-  readonly brand: "minor";
+// TeacherInterface
+interface TeacherInterface {
+    workFromHome(): string;
+    getCoffeeBreak(): string;
+    workTeacherTasks(): string;
 }
 
-/**
- * Function to sum major credits
- */
-function sumMajorCredits(
-  subject1: MajorCredits,
-  subject2: MajorCredits
-): MajorCredits {
-  return {
-    credits: subject1.credits + subject2.credits,
-    brand: "major",
-  };
+// Director class
+class Director implements DirectorInterface {
+    workFromHome(): string {
+        return 'Working from home';
+    }
+
+    getCoffeeBreak(): string {
+        return 'Getting a coffee break';
+    }
+
+    workDirectorTasks(): string {
+        return 'Getting to director tasks';
+    }
 }
 
-/**
- * Function to sum minor credits
- */
-function sumMinorCredits(
-  subject1: MinorCredits,
-  subject2: MinorCredits
-): MinorCredits {
-  return {
-    credits: subject1.credits + subject2.credits,
-    brand: "minor",
-  };
+// Teacher class
+class Teacher implements TeacherInterface {
+    workFromHome(): string {
+        return 'Cannot work from home';
+    }
+
+    getCoffeeBreak(): string {
+        return 'Cannot have a break';
+    }
+
+    workTeacherTasks(): string {
+        return 'Getting to work';
+    }
 }
 
-// Example usage (not mandatory to include):
-const major1: MajorCredits = { credits: 3, brand: "major" };
-const major2: MajorCredits = { credits: 4, brand: "major" };
-const minor1: MinorCredits = { credits: 2, brand: "minor" };
-const minor2: MinorCredits = { credits: 1, brand: "minor" };
+// createEmployee function
+function createEmployee(salary: number | string): Director | Teacher {
+    if (typeof salary === 'number' && salary < 500) {
+        return new Teacher();
+    }
+    return new Director();
+}
 
-console.log(sumMajorCredits(major1, major2)); // { credits: 7, brand: "major" }
-console.log(sumMinorCredits(minor1, minor2)); // { credits: 3, brand: "minor" }
+// Example usage
+console.log(createEmployee(200)); // Teacher
+console.log(createEmployee(1000)); // Director
+console.log(createEmployee('$500')); // Director
