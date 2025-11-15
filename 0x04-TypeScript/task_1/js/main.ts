@@ -1,21 +1,25 @@
-// task_1/js/main.ts
-
+// Import or define Teacher interface from Task 1
 export interface Teacher {
   readonly firstName: string;
   readonly lastName: string;
   fullTimeEmployee: boolean;
   yearsOfExperience?: number;
   location: string;
-  [key: string]: any; // allow any additional attributes
+  [key: string]: any; // allow any extra attributes
+}
+
+// Director interface extending Teacher
+export interface Directors extends Teacher {
+  numberOfReports: number; // required
 }
 
 // Example usage
-const teacher3: Teacher = {
+const director1: Directors = {
   firstName: 'John',
   lastName: 'Doe',
   location: 'London',
-  fullTimeEmployee: false,
-  contract: false, // extra attribute
+  fullTimeEmployee: true,
+  numberOfReports: 17,
 };
 
-console.log(teacher3);
+console.log(director1);
